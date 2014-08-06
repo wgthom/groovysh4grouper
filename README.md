@@ -28,13 +28,13 @@ See: https://community.oracle.com/thread/1022366?tstart=0
 Add Grouper Shell to your Groovy Profile
 ---------------------
 
-Add `:load $groovysh4grouper/groupershell.groovy` to `~/.groovy/groovy.profile`
+Add `:load {path to groovysh4grouper}/groupershell.groovy` to `~/.groovy/groovy.profile`
 This causes `groupershell.groovy` to be loaded everytime you run `groovysh`.
 
 Put ggsh in the bin directory
 -----------------------------
 
-Copy `$groovysh4grouper/ggsh` to `$GROUPER_HOME/grouper.apiBinary-2.2.0/bin`.
+Copy `{path to groovysh4grouper}/ggsh` to `$GROUPER_HOME/grouper.apiBinary-2.2.0/bin`.
 
 Running
 =======
