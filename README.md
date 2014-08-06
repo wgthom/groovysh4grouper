@@ -9,8 +9,7 @@ Install
 1. Install groovy - http://groovy.codehaus.org/Installing+Groovy.
 ``brew install groovy`` also works.
 
-2. Update java.policy to enable JMX
-Update $JAVA_HOME/jre/lib/security/java.policy with
+2. Update $JAVA_HOME/jre/lib/security/java.policy with
 ``
 grant {
 // JMX Java Management eXtensions
