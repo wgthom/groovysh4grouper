@@ -27,11 +27,10 @@ Update `$JAVA_HOME/jre/lib/security/java.policy` with:
 
 See: https://community.oracle.com/thread/1022366?tstart=0
 
-Add Grouper Shell to your Groovy Profile
+Copy config directory
 ---------------------
 
-Add `:load {path to groovysh4grouper}/groupershell.groovy` to `~/.groovy/groovy.profile`
-This causes `groupershell.groovy` to be loaded everytime you run `groovysh`.
+Copy and rename the config directory to `$GROUPER_HOME/grouper.apiBinary-2.2.0/conf/.groovy`
 
 Put ggsh in the bin directory
 -----------------------------
