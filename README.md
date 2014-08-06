@@ -26,7 +26,7 @@ grouper.profile contains bootstrap and grouper command definitions.
 
 Running
 =======
-First check that the regular gsh command is working.  If you are starting from scratch or want an isolated testbed use the [GrouperInstaller|https://spaces.internet2.edu/display/Grouper/Grouper+Downloads] and load the sample database when prompted.
+First check that the regular gsh command is working.  If you are starting from scratch or want an isolated testbed use the [GrouperInstaller](https://spaces.internet2.edu/display/Grouper/Grouper+Downloads) and load the sample database when prompted.
 
 If gsh is working you should be able to run:
 ``./ggsh`` to start up groovysh4grouper.
