@@ -3,6 +3,8 @@ Groovy Shell for Grouper
 
 Groovy Shell for Grouper is an exploration of using the stock `groovysh` as a command line interface to Grouper. Feedback, pull requests, etc are welcome.
 
+Demo: https://www.youtube.com/watch?v=YabTBzWc1Ec
+
 Installing
 ==========
 
