@@ -6,16 +6,15 @@ Groovy Shell for Grouper is an exploration of using the stock `groovysh` as a co
 Installing
 ==========
 
-1 - Install Groovy
+Install Groovy
 --------------
 
-Install groovy - http://groovy.codehaus.org/Installing+Groovy.
-`brew install groovy` also works.
+Install groovy - http://groovy.codehaus.org/Installing+Groovy.  `brew install groovy` also works on OS X.
 
-2 - Update JVM security policy
-------------------------------
+Update JVM security policy to accept JMX
+--------------------------
 
-Update `$JAVA_HOME/jre/lib/security/java.policy` with
+Update `$JAVA_HOME/jre/lib/security/java.policy` with:
 
 ```
     grant {
@@ -24,19 +23,18 @@ Update `$JAVA_HOME/jre/lib/security/java.policy` with
     };
 ```
 
-https://community.oracle.com/thread/1022366?tstart=0
+See: https://community.oracle.com/thread/1022366?tstart=0
 
-3 - Update Groovy Profile
-------------------------
+Add Grouper Shell to your Groovy Profile
+---------------------
 
-Update or add to `~/.groovy/groovy.profile`
+Add `:load $groovysh4grouper/groupershell.groovy` to `~/.groovy/groovy.profile`
+This causes `groupershell.groovy` to be loaded everytime you run `groovysh`.
 
-`grouper.profile` contains bootstrap and grouper command definitions.
+Put ggsh in the bin directory
+-----------------------------
 
-4 - Put ggsh in the bin directory
---------------------------------
-
-Place ggsh in `$GROUPER_HOME/grouper.apiBinary-2.2.0/bin` along side `gsh`
+Copy `$groovysh4grouper/ggsh` to `$GROUPER_HOME/grouper.apiBinary-2.2.0/bin`.
 
 Running
 =======
