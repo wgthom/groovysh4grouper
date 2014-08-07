@@ -131,7 +131,7 @@ if [ "$arg1" != "-initEnv" ]; then
 	# $JAVA  -Xms$MEM_START -Xmx$MEM_MAX -Dgrouper.home="$GROUPER_HOME/" $GSH_JVMARGS -jar $GROUPER_HOME/lib/grouper/invoker.jar -cpdir $GROUPER_CONF -cpalljars $GROUPER_HOME/lib -cpjar $GROUPER_HOME/dist/lib/grouper.jar  -cpalljars $GROUPER_HOME/dist/lib/test $GSH $*
 
 	#${JAVA} -Xms$MEM_START -Xmx$MEM_MAX -Dgrouper.home="$GROUPER_HOME/" $GSH_JVMARGS -classpath "${GROUPER_CP}" $GSH $*
-	groovysh -cp "${GROUPER_CP}" -Djava.security.manager -D java.security.policy="${GROUPER_CONF}/.groovy/java.policy" -Duser.home="${GROUPER_CONF}" $*
+	groovysh -cp "${GROUPER_CP}" -Djava.security.manager -Djava.security.policy="${GROUPER_CONF}/.groovy/java.policy" -Duser.home="${GROUPER_CONF}" $*
 	
 fi
 #:end
