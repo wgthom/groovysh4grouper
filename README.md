@@ -13,20 +13,6 @@ Install Groovy
 
 Install groovy - http://groovy.codehaus.org/Installing+Groovy.  `brew install groovy` also works on OS X.
 
-Update JVM security policy to accept JMX
---------------------------
-
-Update `$JAVA_HOME/jre/lib/security/java.policy` with:
-
-```
-    grant {
-    // JMX Java Management eXtensions
-    permission javax.management.MBeanTrustPermission "register";
-    };
-```
-
-See: https://community.oracle.com/thread/1022366?tstart=0
-
 Copy config directory
 ---------------------
 
