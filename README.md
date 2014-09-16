@@ -1,44 +1,26 @@
-Groovy Shell for Grouper
-========================
+Shell Wrappers for Grouper
+==========================
 
-Groovy Shell for Grouper is an exploration of using the stock `groovysh` as a command line interface to Grouper. Feedback, pull requests, etc are welcome.
+Shell Wrappers for Grouper is an exploration of using various scripting shells for the JVM as an **interactive** command line interface to Grouper. Feedback, pull requests, etc are welcome.
+
+Current front-ends include:
+
+* groovy
+* jython
 
 Demo: https://www.youtube.com/watch?v=YabTBzWc1Ec
 
-Installing
-==========
+Installation
+============
 
-Install Groovy
---------------
+Install a Front End
+-------------------
 
-Install groovy - http://groovy.codehaus.org/Installing+Groovy.  `brew install groovy` also works on OS X.
+* groovy - http://groovy.codehaus.org/Installing+Groovy.  `brew install groovy` also works on OS X.
+* jython - https://wiki.python.org/jython/InstallationInstructions
 
-Copy config directory
----------------------
+Follow Front End Specific Instructions
+--------------------------------------
+Look for a README in the folder that matches your front end.  E.g. for groovy, follow
+the `groovy/README.groovy.md` instructions.
 
-Copy and rename the config directory to `$GROUPER_HOME/grouper.apiBinary-2.2.0/conf/.groovy`
-
-Put ggsh in the bin directory
------------------------------
-
-Copy `{path to groovysh4grouper}/ggsh` to `$GROUPER_HOME/grouper.apiBinary-2.2.0/bin`.
-
-Running
-=======
-
-First check that the regular gsh command is working.  If you are starting from scratch or want an isolated testbed use the [Grouper Installer](https://spaces.internet2.edu/display/Grouper/Grouper+Downloads) and load the sample database when prompted.
-
-If gsh is working you should be able to run:
-`./ggsh` to start up groovysh4grouper.
-
-If you've loaded the sample data, try:
-
-```
-    groovy:000> getGroups "all students"
-```
-
-which should return
-
-```
-    ===> [Group[name=qsuob:all,uuid=30c2a93f-3494-4022-a2f5-b92682586482], Group[name=qsuob:all_students,uuid=7959b1fe-c63b-45de-a603-9dc0fdda8206]]
-```
