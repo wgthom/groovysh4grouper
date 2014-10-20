@@ -132,7 +132,20 @@ if [ "$arg1" != "-initEnv" ]; then
 	echo using MEMORY:                 $MEM_START-$MEM_MAX
 
     export CLASSPATH="${GROUPER_CP}"
-    ${JYTHON} -i -Dpython.path="${GROUPER_CP}" "$JYTHON_GROUPER" 
+    if [ $# -ge 1 ]; then
+        if [ -z "$JYTHONPATH" ]; then
+            export JYTHONPATH="$THISDIR"
+        else
+            export JYTHONPATH="$JYTHONPATH:$THISDIR"
+        fi
+        JYPATH="${GROUPER_CP}"
+        if [ ! -z "$JYTHONPATH" ]; then
+            JYPATH="$JYPATH:$JYTHONPATH"
+        fi
+        ${JYTHON} -Dpython.path="$JYPATH" "$@"
+    else
+        ${JYTHON} -i -Dpython.path="${GROUPER_CP}" "$JYTHON_GROUPER" 
+    fi
 fi
 #:end
 if [ "$arg1" != "-initEnv" ]; then
