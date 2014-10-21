@@ -24,7 +24,7 @@ function addclass
     fi
 }
 
-while getopts ":hiD:" opt; do
+while getopts ":hic:" opt; do
     case $opt in
         h  )  usage; exit 0;;
         c  )  addclass $OPTARG;;
