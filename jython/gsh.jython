@@ -4,81 +4,34 @@ SCRIPT="$( cd $(dirname $0); pwd)/$(basename $0)"
 THISDIR=$(dirname "$SCRIPT")
 JYTHON_GROUPER="$THISDIR/jython_grouper.py"
 JYTHON="/opt/jython/bin/jython"
-
-if [ "$0" = "" ]; then
-	arg1=-initEnv
-elif [ "$0" = "gsh.sh" ]; then
-	arg1=-initEnv
-else
-	arg1=$1
-	if [ "$arg1" = "-initenv" ]; then
-		arg1=-initEnv
-	fi
-	if [ "$arg1" = "-initEnv" ]; then
-		echo Cannot run gsh.sh -initEnv. Instead use:
-		echo "    source gsh.sh, or"
-		echo "    . gsh.sh"
-		exit
-	fi
-fi
-# In case something goes wrong
-GROUPER_HOME_SAFE=$GROUPER_HOME
-
-# Work out where we are
-GROUPER_CUR_DIR=$PWD
-
-# Guess GROUPER_HOME if not defined
-if [ "$GROUPER_HOME" = "" ]; then
-	if [ "$arg1" = "-initEnv" ]; then
-		echo Attempting to reset GROUPER_HOME
-	fi
-	#:noGrouperHome
-	GROUPER_HOME=$GROUPER_CUR_DIR
+GROUPER_HOME=$(dirname "$THISDIR")
+if [ ! -f "$GROUPER_HOME/bin/gsh.sh" ]; then
+    echo "This script shold be located in GROUPER_HOME/bin, but it is not." >&2
+    exit 1
 fi
 
-#:checkGrouperHome
-if [ -f "$GROUPER_HOME/bin/gsh.sh" ]; then
-	GROUPER_DUMMY=
-else
-	# In case we are in 'bin' try teh parent directory 
-	GROUPER_HOME=$GROUPER_CUR_DIR/..
-fi
+function usage
+{
+    echo "Usage $0: [-h] [-D path] [script [args ...]]" >&2
+}
 
-#:gotHome
-if [ -f "$GROUPER_HOME/bin/gsh.sh" ]; then
-		GROUPER_DUMMY=
-else
-	# Bad GROUPER_HOME
-	if [ "$arg1" = "-initEnv" ]; then
-		# Something isn't right so revert to whatever we started with
-		GROUPER_HOME=$GROUPER_HOME_SAFE
-	fi
-	#:badGrouperHome
-	echo The GROUPER_HOME environment variable is not defined correctly
-	echo or could not be determined
-	echo This script must be located in "<GROUPER_HOME>" or "<GROUPER_HOME>/bin"
-	exit
-fi
+function addclass
+{
+    if [ -z "$CLASSPATH" ]; then
+        CLASSPATH="$1"
+    else
+        CLASSPATH="$CLASSPATH:$1"
+    fi
+}
 
-#:okHome
-
-PATH="$GROUPER_HOME/bin:$PATH"
-if [ "$arg1" = "-initEnv" ]; then
-	echo Added $GROUPER_HOME/bin to PATH
-	echo Setting GROUPER_HOME=$GROUPER_HOME
-	export GROUPER_HOME
-fi
-
-if [ "$2" != "" ]; then
-	if [ -f "$2/grouper.hibernate.properties" ]; then
-		GROUPER_CONF=$2
-		echo Using GROUPER_CONF=$GROUPER_CONF
-	fi
-fi
-
-
-#:run
-# We aren't initing so handle args
+while getopts ":hiD:" opt; do
+    case $opt in
+        h  )  usage; exit 0;;
+        D  )  addclass $OPTARG;;
+        \? )  usage; exit 1;;
+    esac
+done
+shift $(($OPTIND-1))
 
 # Get standard environment variables
 if [ -f "$GROUPER_HOME/bin/setenv.sh" ]; then
@@ -123,7 +76,6 @@ GROUPER_CP=${GROUPER_CP}:${GROUPER_HOME}/src/resources
 # Preserve the user's $CLASSPATH
 GROUPER_CP=${GROUPER_CP}:${CLASSPATH}
 
-if [ "$arg1" != "-initEnv" ]; then
 	# ----- Execute The Requested Command ---------------------------------------
 
 	echo Using GROUPER_HOME:           $GROUPER_HOME
@@ -146,13 +98,4 @@ if [ "$arg1" != "-initEnv" ]; then
     else
         ${JYTHON} -i -Dpython.path="${GROUPER_CP}" "$JYTHON_GROUPER" 
     fi
-fi
 #:end
-if [ "$arg1" != "-initEnv" ]; then
-		GROUPER_HOME=$GROUPER_HOME_SAFE
-fi
-
-#:endInitEnv
-GROUPER_CUR_DIR=
-GROUPER_HOME_SAFE=
-GROUPER_CP=
