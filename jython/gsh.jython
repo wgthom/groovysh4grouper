@@ -27,7 +27,7 @@ function addclass
 while getopts ":hiD:" opt; do
     case $opt in
         h  )  usage; exit 0;;
-        D  )  addclass $OPTARG;;
+        c  )  addclass $OPTARG;;
         \? )  usage; exit 1;;
     esac
 done
