@@ -12,7 +12,7 @@ fi
 
 function usage
 {
-    echo "Usage $0: [-h] [-D path] [script [args ...]]" >&2
+    echo "Usage $0: [-h] [-c path] [-p prop] [script [args ...]]" >&2
 }
 
 function addclass
@@ -24,10 +24,17 @@ function addclass
     fi
 }
 
-while getopts ":hic:" opt; do
+function addprop
+{
+    JYTHON="$JYTHON -D$1"
+}
+
+INITENV=0
+while getopts ":hic:p:" opt; do
     case $opt in
         h  )  usage; exit 0;;
         c  )  addclass $OPTARG;;
+        p  )  addprop $OPTARG;;
         \? )  usage; exit 1;;
     esac
 done
