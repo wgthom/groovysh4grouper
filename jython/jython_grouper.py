@@ -11,6 +11,7 @@ except (ImportError,), ex:
 # Put some common names in scope.
 import edu.internet2.middleware.grouper as grouper
 import edu.internet2.middleware.grouper.filter as grouper_filter
+from import edu.internet2.middleware.grouper.pit import PITUtils
 
 def getRootSession():
     """
@@ -91,8 +92,28 @@ def getStems(session, name):
     for item in query.getStems():
         yield item
 
-
-
+def obliterateStem(session, stem_name, testOnly=False, deleteFromPointInTime=False):
+    """
+    Delete stem and subobjects.
+    
+    `testOnly`: Is True, then only print a report.  This is not supported with
+    the `deleteFromPointInTime` option.
+    `deleteFromPointInTime`: If True, delete from point in time as well.  PIT
+    records can only be deleted *after* the actual objects have been deleted by
+    the changeLogTempToChangeLog job, which runs once a minute by default with 
+    the Grouper Daemon.  So this will cause the function to block until that
+    job has completed.
+    
+    Throws an exception on failure.
+    """
+    if deleteFromPointInTime and testOnly:
+        raise Exception("Cannot use `deleteFromPointInTime` and `testOnly` options simultaneously.")
+    if deleteFromPointInTime:
+        PITUtils.deleteInactiveStem(stem_name, True)
+    else:
+        ns = grouper.StemFinder.findByName(session, stem_name, True)
+        ns.obliterate(True, testOnly)
+    
 
 
 
