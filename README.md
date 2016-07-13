@@ -1,7 +1,7 @@
-Shell Wrappers for Grouper
+Shell Wrappers for Internet2 Grouper
 ==========================
 
-Shell Wrappers for Grouper is an exploration of using various scripting shells for the JVM as an **interactive** command line interface to Grouper. Feedback, pull requests, etc are welcome.
+Shell Wrappers for [Internet2 Grouper](http://www.internet2.edu/products-services/trust-identity/grouper/) is an exploration of using various scripting shells for the JVM as an **interactive** command line interface to Grouper. Feedback, pull requests, etc are welcome.
 
 Current front-ends include:
 
