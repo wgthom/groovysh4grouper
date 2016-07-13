@@ -5,8 +5,9 @@ Shell Wrappers for [Internet2 Grouper](http://www.internet2.edu/products-service
 
 Current front-ends include:
 
-* groovy
-* jython
+* Groovy
+* Jython
+* Clojure
 
 Demo: https://www.youtube.com/watch?v=YabTBzWc1Ec
 
